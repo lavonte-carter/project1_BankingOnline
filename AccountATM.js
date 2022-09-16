@@ -59,7 +59,7 @@ async function loadUsers(response){
         user_user_id.innerText = response[i].user_id;
         user_first_name.innerText = response[i].first_name;
         user_last_name.innerText = response[i].last_name;
-        user_password.innerText = response[i].password;
+        user_password.innerText = response[i].user_password;
 
         userList.appendChild(user_username);
         userList.appendChild(user_user_id);
@@ -97,17 +97,17 @@ async function loadAccounts(response){
     for(let i = 0; i < response.length; i++){
         let account_accountid = document.createElement('li');
         let account_balance = document.createElement('p');
-        let account_userid = document.createElement('p');
+        let account_account_userid = document.createElement('p');
         let account_account_name = document.createElement('p');
 
         account_accountid.innerText = response[i].accountid;
         account_balance.innerText = response[i].balance;
-        account_userid.innerText = response.account_accountid;
+        account_account_userid.innerText = response[i].account_userid;
         account_account_name.innerText = response[i].account_name;
 
         accountList.appendChild(account_accountid);
         accountList.appendChild(account_balance);
-        accountList.appendChild(account_userid);
+        accountList.appendChild(account_account_userid);
         accountList.appendChild(account_account_name);
     }
     content2.appendChild(accountList);
@@ -132,7 +132,7 @@ async function apiPostAccount(){
     apiGetAccounts();
 }
 //
-async function apiDeleteUser(user_id){
+async function apiDeleteUser(){
     let inputUser = delete_userInput.value;
 
     let response = await fetch("http://localhost:9000/deleteUser/"+inputUser, {
@@ -159,3 +159,4 @@ async function apiDeleteAccount(){
     });
     apiGetAccounts();
 }
+
