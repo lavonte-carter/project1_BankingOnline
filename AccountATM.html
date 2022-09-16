@@ -8,32 +8,40 @@
   </head>
   <body>
     <h1>Bank Account</h1>
-    <p>Users displayed here:</p>
-    <span id="content"></span>
-    <button id="loadButton">load all Users</button>
+    <div>
+      <p>Users displayed here:</p>
+      <span id="content"></span>
+      <button id="loadButton">load all Users</button>
+    </div>
     <br />
     <br />
 
     <h3>Add User Below</h3>
     <br />
 
-    <p>user id</p>
-    <input id="user_idInput" type="text" />
-    <p>username</p>
-    <input id="usernameInput" type="text" />
-    <p>first name</p>
-    <input id="first_nameInput" type="text" />
-    <p>last name</p>
-    <input id="last_nameInput" type="text" />
-    <p>password</p>
-    <input id="passwordInput" type="text" />
-    <button id="submitButton">Submit User</button>
+    <div>
+      <p>user id</p>
+      <input id="user_idInput" type="text" />
+      <p>username</p>
+      <input id="usernameInput" type="text" />
+      <p>first name</p>
+      <input id="first_nameInput" type="text" />
+      <p>last name</p>
+      <input id="last_nameInput" type="text" />
+      <p>password</p>
+      <input id="passwordInput" type="text" />
+      <br />
+      <div><button id="submitButton">Submit User</button></div>
+    </div>
+    <br />
+    <br />
+    <br />
 
-    <br />
-    <br />
-    <br />
-    <span id="content2"></span>
-    <button id="loadButton2">load Accounts</button>
+    <div>
+      <span id="content2"></span>
+      <button id="loadButton2">load Accounts</button>
+    </div>
+
     <br />
     <br />
 
@@ -48,7 +56,27 @@
     <input id="account_useridInput" type="text" />
     <p>account_name</p>
     <input id="account_nameInput" type="text" />
-    <button id="submitButton2">Submit Account</button>
+
+    <div><button id="submitButton2">Submit Account</button></div>
+    <br />
+    <br />
+    <br />
+
+    <h4>Delete User</h4>
+    <div>
+      <p>Enter the user id of the user you would like to delete.</p>
+      <span id="content3"></span>
+      <input id="delete_userInput" type="text" />
+      <button id="deleteButton">Delete User</button>
+    </div>
+
+    <h4>Delete Account</h4>
+    <div>
+      <p>Enter the user id of the user you would like to delete.</p>
+      <span id="content4"></span>
+      <input id="delete_accountInput" type="text" />
+      <button id="deleteButton2">Delete Account</button>
+    </div>
 
     <script src="AccountATM.js"></script>
   </body>
