@@ -3,17 +3,17 @@ drop table if exists AccountUser;
 
 
 create table AccountUser (
-	user_id SERIAL primary key, --userid
-	username varchar(255) unique, --join with accountAtm
+	user_id int primary key, --userid
+	username varchar(255) unique, --join with accountAtm 
 	first_name varchar(255),
 	last_name varchar(255),
-	password varchar(255)
-
+	user_password varchar(255)
+	
 )
 
 
 create table AccountAtm (
-	accountid SERIAL primary key,
+	accountid int primary key,
 	balance int,
 	account_userid int,
 	account_name varchar(255),
@@ -21,35 +21,42 @@ create table AccountAtm (
 )
 
 
-insert into AccountUser(username, first_name, last_name, password) values ('admin', 'Lavonte', 'Carter','adminpass');
-insert into AccountUser(username, first_name, last_name, password) values('lauren3536', 'Lauren', 'Jackson','adsdf');
-insert into AccountUser(username, first_name, last_name, password) values('Superman', 'Mason', 'Jones', 'dgdbfg');
-insert into AccountUser(username, first_name, last_name, password) values ('dandaman', 'Daniel', 'Green', 'hjghbj');
-
+insert into AccountUser(user_id, username, first_name, last_name, user_password) values (0, 'admin', 'Lavonte', 'Carter','adminpass');
+insert into AccountUser(user_id, username, first_name, last_name, user_password) values(1, 'lauren3536', 'Lauren', 'Jackson','adsdf');
+insert into AccountUser(user_id, username, first_name, last_name, user_password) values(2, 'Superman', 'Mason', 'Jones', 'dgdbfg');
+insert into AccountUser(user_id, username, first_name, last_name, user_password) values (3, 'dandaman', 'Daniel', 'Green', 'hjghbj');
+	
 select * from AccountUser
 
 
 
-insert into AccountAtm(balance, account_userid, account_name) values (0, 1, 'Administrator');
-insert into AccountAtm(balance, account_userid, account_name) values (50, 2, 'Checking' );
-insert into AccountAtm(balance, account_userid, account_name) values (80, 3, 'Checking');
-insert into AccountAtm(balance, account_userid, account_name) values (100, 4, 'Savings');
+insert into AccountAtm(accountid, balance, account_userid, account_name) values (0, null, 0, 'Administrator Account');
+insert into AccountAtm(accountid, balance, account_userid, account_name) values (1, 50, 1, 'Checking' );
+insert into AccountAtm(accountid, balance, account_userid, account_name) values (2, 80, 2, 'Checking');
+insert into AccountAtm(accountid, balance, account_userid, account_name) values (3, 100, 3, 'Savings');
 
 select * from AccountAtm
 
 
 
-
 select * from AccountAtm join AccountUser on AccountAtm.account_userid = AccountUser.user_id;
 
-
-update AccountAtm set balance = balance + 10 where username = 'lauren3536'; --add balance
-
-update AccountUser set password = 'happy123' where password = 'hjghbj'; --update password
-
-delete from AccountAtm where accountatm.account_userid = 2; --works
+select username, user_password from AccountUser where user_id = 2;
 
 
-update AccountAtm set balance = balance - 10 where username = 'lauren3536'; --subtact balance
+select account_userid, balance, account_name from AccountAtm
+
+
+update AccountAtm set balance = balance + 10 where account_userid = 3; --add balance
+
+update AccountUser set user_password = 'happy123' where username = 'lauren3536'; --update password
+
+
+--delete from AccountUser where accountuser.user_id = 2;
+delete from AccountAtm where account_userid = 13; --works
+delete from AccountUser where user_id = 13; --works
+
+
+update AccountAtm set balance = balance - 10 where account_userid = 3; --subtact balance
 
 Select balance from AccountATM where account_userid = 2;
