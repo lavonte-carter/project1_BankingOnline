@@ -2,6 +2,7 @@ let content = document.getElementById("content");
 let content2 = document.getElementById("content2");
 let content3 = document.getElementById("content3");
 let content4 = document.getElementById("content4");
+let content5 = document.getElementById("content4");
 let loadButton = document.getElementById("loadButton");
 let loadButton2 = document.getElementById("loadButton2");
 
@@ -18,6 +19,8 @@ let account_nameInput = document.getElementById("account_nameInput");
 
 let delete_userInput = document.getElementById("delete_userInput");
 let delete_accountInput = document.getElementById("delete_accountInput");
+let update_passworduserInput =document.getElementById("update_passworduserInput");
+let update_passwordpassInput =document.getElementById("update_passwordpassInput");
 
 let submitButton = document.getElementById("submitButton");
 let submitButton2 = document.getElementById("submitButton2");
@@ -29,6 +32,7 @@ submitButton.addEventListener("click", apiPostUser);
 submitButton2.addEventListener("click", apiPostAccount);
 deleteButton.addEventListener("click", apiDeleteUser);
 deleteButton2.addEventListener("click", apiDeleteAccount);
+updatePasswordButton.addEventListener("click",apiUpdatePassword);
 
 
 async function apiGetUsers(){
@@ -89,6 +93,26 @@ async function apiPostUser(){
     });
     apiGetUsers();
 }
+//
+
+async function apiUpdatePassword(){
+    console.log("button clicked");
+    let inputUser = {
+        username:update_passworduserInput.value,
+        user_password:update_passwordpassInput.value
+    }
+
+    let response = await fetch("http://localhost:9000/updateUser_Password", {
+        method:'Put',
+        mode:'cors',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify(inputUser)
+    });
+    apiGetUsers();
+}
+
 //load accounts
 async function loadAccounts(response){
     content2.innerHTML = "";
@@ -158,5 +182,3 @@ async function apiDeleteAccount(){
         body:JSON.stringify(inputAccount)
     });
     apiGetAccounts();
-}
-
