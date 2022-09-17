@@ -1,0 +1,55 @@
+drop table if exists AccountAtm;
+drop table if exists AccountUser;
+
+
+create table AccountUser (
+	user_id SERIAL primary key, --userid
+	username varchar(255) unique, --join with accountAtm
+	first_name varchar(255),
+	last_name varchar(255),
+	password varchar(255)
+
+)
+
+
+create table AccountAtm (
+	accountid SERIAL primary key,
+	balance int,
+	account_userid int,
+	account_name varchar(255),
+	foreign key (account_userid) references AccountUser(user_id)
+)
+
+
+insert into AccountUser(username, first_name, last_name, password) values ('admin', 'Lavonte', 'Carter','adminpass');
+insert into AccountUser(username, first_name, last_name, password) values('lauren3536', 'Lauren', 'Jackson','adsdf');
+insert into AccountUser(username, first_name, last_name, password) values('Superman', 'Mason', 'Jones', 'dgdbfg');
+insert into AccountUser(username, first_name, last_name, password) values ('dandaman', 'Daniel', 'Green', 'hjghbj');
+
+select * from AccountUser
+
+
+
+insert into AccountAtm(balance, account_userid, account_name) values (0, 1, 'Administrator');
+insert into AccountAtm(balance, account_userid, account_name) values (50, 2, 'Checking' );
+insert into AccountAtm(balance, account_userid, account_name) values (80, 3, 'Checking');
+insert into AccountAtm(balance, account_userid, account_name) values (100, 4, 'Savings');
+
+select * from AccountAtm
+
+
+
+
+select * from AccountAtm join AccountUser on AccountAtm.account_userid = AccountUser.user_id;
+
+
+update AccountAtm set balance = balance + 10 where username = 'lauren3536'; --add balance
+
+update AccountUser set password = 'happy123' where password = 'hjghbj'; --update password
+
+delete from AccountAtm where accountatm.account_userid = 2; --works
+
+
+update AccountAtm set balance = balance - 10 where username = 'lauren3536'; --subtact balance
+
+Select balance from AccountATM where account_userid = 2;
