@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Bank Account</h1>
+    <div>
+      <p>Users displayed here:</p>
+      <span id="content"></span>
+      <button id="loadButton">load all Users</button>
+    </div>
+    <br />
+    <br />
+
+    <h3>Add User Below</h3>
+    <br />
+
+    <div>
+      <p>user id</p>
+      <input id="user_idInput" type="text" />
+      <p>username</p>
+      <input id="usernameInput" type="text" />
+      <p>first name</p>
+      <input id="first_nameInput" type="text" />
+      <p>last name</p>
+      <input id="last_nameInput" type="text" />
+      <p>password</p>
+      <input id="passwordInput" type="text" />
+      <br />
+      <div><button id="submitButton">Submit User</button></div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <div>
+      <span id="content2"></span>
+      <button id="loadButton2">load Accounts</button>
+    </div>
+
+    <br />
+    <br />
+
+    <h3>Add Account Below</h3>
+    <br />
+
+    <p>accountid</p>
+    <input id="accountidInput" type="text" />
+    <p>balance</p>
+    <input id="balanceInput" type="text" />
+    <p>account_userid</p>
+    <input id="account_useridInput" type="text" />
+    <p>account_name</p>
+    <input id="account_nameInput" type="text" />
+
+    <div><button id="submitButton2">Submit Account</button></div>
+    <br />
+    <br />
+    <br />
+
+    <h4>Delete User</h4>
+    <div>
+      <p>Enter the user id of the user you would like to delete.</p>
+      <span id="content3"></span>
+      <input id="delete_userInput" type="text" />
+      <button id="deleteButton">Delete User</button>
+    </div>
+
+    <h4>Delete Account</h4>
+    <div>
+      <p>Enter the user id of the user you would like to delete.</p>
+      <span id="content4"></span>
+      <input id="delete_accountInput" type="text" />
+      <button id="deleteButton2">Delete Account</button>
+    </div>
+
+    <br />
+    <div>
+      <h4>Update Password Here</h4>
+      <span id="content5"></span>
+      <label for="update_passworduserInput">Enter Username</label>
+      <input id="update_passworduserInput" type="text" />
+      <label for="update_passwordpassInput">Enter Password</label>
+      <input id="update_passwordpassInput" type="text" />
+      <button id="updatePasswordButton">Update Password</button>
+    </div>
+
+    <script src="AccountATM.js"></script>
+  </body>
+</html>
+

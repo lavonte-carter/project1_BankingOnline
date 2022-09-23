@@ -1,5 +1,8 @@
 let content = document.getElementById("content");
 let content2 = document.getElementById("content2");
+let content3 = document.getElementById("content3");
+let content4 = document.getElementById("content4");
+let content5 = document.getElementById("content4");
 let loadButton = document.getElementById("loadButton");
 let loadButton2 = document.getElementById("loadButton2");
 
@@ -7,12 +10,17 @@ let usernameInput = document.getElementById("usernameInput");
 let user_idInput = document.getElementById("user_idInput");
 let first_nameInput = document.getElementById("first_nameInput");
 let last_nameInput = document.getElementById("last_nameInput");
-let passwordInput = document.getElementById("passwordInput");
+let user_passwordInput = document.getElementById("passwordInput");
 
 let accountidInput = document.getElementById("accountidInput");
 let balanceInput = document.getElementById("balanceInput");
 let account_useridInput = document.getElementById("account_useridInput");
 let account_nameInput = document.getElementById("account_nameInput");
+
+let delete_userInput = document.getElementById("delete_userInput");
+let delete_accountInput = document.getElementById("delete_accountInput");
+let update_passworduserInput =document.getElementById("update_passworduserInput");
+let update_passwordpassInput =document.getElementById("update_passwordpassInput");
 
 let submitButton = document.getElementById("submitButton");
 let submitButton2 = document.getElementById("submitButton2");
@@ -22,7 +30,10 @@ loadButton.addEventListener("click", apiGetUsers);
 loadButton2.addEventListener("click", apiGetAccounts);
 submitButton.addEventListener("click", apiPostUser);
 submitButton2.addEventListener("click", apiPostAccount);
-//submitButton.addEventListener("click", apiPostAccount);
+deleteButton.addEventListener("click", apiDeleteUser);
+deleteButton2.addEventListener("click", apiDeleteAccount);
+updatePasswordButton.addEventListener("click",apiUpdatePassword);
+
 
 async function apiGetUsers(){
     console.log("button clicked");
@@ -52,13 +63,13 @@ async function loadUsers(response){
         user_user_id.innerText = response[i].user_id;
         user_first_name.innerText = response[i].first_name;
         user_last_name.innerText = response[i].last_name;
-        user_password.innerText = response[i].password;
+        user_password.innerText = response[i].user_password;
 
         userList.appendChild(user_username);
         userList.appendChild(user_user_id);
         userList.appendChild(user_first_name);
         userList.appendChild(user_last_name);
-        //userList.appendChild(user_password);
+        userList.appendChild(user_password);
     }
     content.appendChild(userList);
     
@@ -70,19 +81,38 @@ async function apiPostUser(){
         user_id:user_idInput.value,
         first_name:first_nameInput.value,
         last_name:last_nameInput.value,
-        //password:passwordInput.value
+        user_password:user_passwordInput.value
     }
     let response = await fetch("http://localhost:9000/addUser", {
         method:'POST',
         mode:'cors',
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         body:JSON.stringify(inputUser)
     });
     apiGetUsers();
 }
+//
+
+async function apiUpdatePassword(){
+    console.log("button clicked");
+    let inputUser = {
+        username:update_passworduserInput.value,
+        user_password:update_passwordpassInput.value
+    }
+
+    let response = await fetch("http://localhost:9000/updateUser_Password", {
+        method:'Put',
+        mode:'cors',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify(inputUser)
+    });
+    apiGetUsers();
+}
+
 //load accounts
 async function loadAccounts(response){
     content2.innerHTML = "";
@@ -91,23 +121,23 @@ async function loadAccounts(response){
     for(let i = 0; i < response.length; i++){
         let account_accountid = document.createElement('li');
         let account_balance = document.createElement('p');
-        let account_userid = document.createElement('p');
+        let account_account_userid = document.createElement('p');
         let account_account_name = document.createElement('p');
 
         account_accountid.innerText = response[i].accountid;
         account_balance.innerText = response[i].balance;
-        account_userid.innerText = response.account_accountid;
+        account_account_userid.innerText = response[i].account_userid;
         account_account_name.innerText = response[i].account_name;
 
         accountList.appendChild(account_accountid);
         accountList.appendChild(account_balance);
-        accountList.appendChild(account_userid);
+        accountList.appendChild(account_account_userid);
         accountList.appendChild(account_account_name);
     }
     content2.appendChild(accountList);
     
 }
-
+//
 async function apiPostAccount(){
     let inputAccount = {
         accountid:accountidInput.value,
@@ -120,9 +150,35 @@ async function apiPostAccount(){
         mode:'cors',
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         body:JSON.stringify(inputAccount)
     });
     apiGetAccounts();
 }
+//
+async function apiDeleteUser(){
+    let inputUser = delete_userInput.value;
+
+    let response = await fetch("http://localhost:9000/deleteUser/"+inputUser, {
+        method:'Delete',
+        mode:'cors',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify(inputUser)
+    });
+    apiGetUsers();
+}
+
+async function apiDeleteAccount(){
+    let inputAccount = delete_accountInput.value;
+    
+    let response = await fetch("http://localhost:9000/deleteAccount/"+inputAccount, {
+        method:'Delete',
+        mode:'cors',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify(inputAccount)
+    });
+    apiGetAccounts();
